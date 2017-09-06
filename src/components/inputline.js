@@ -6,7 +6,6 @@ angular.module('n-queens')
   bindings: {
     value: "=",
     changeValue: "<"
-
   },
   template: `
     <div>
