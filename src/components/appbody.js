@@ -14,33 +14,29 @@ angular.module('n-queens')
  //    });
 
 	// },
-  controller: function(queen) {
+  controller: function(queen, $scope) {
     this.value = '';
-    this.values = [];
-    this.changeValue = (val) => {
-      this.value = val;
+    $scope.values = [];
+    this.changeValue = function(val) {
       console.log("test");
-      this.values = queen.runQueen(val);
+      queen.runQueen.call(this, val, this.setValues);
       this.value = '';
       console.log(this);
     };
+    this.setValues = function(vals) {
+      $scope.values = vals;
+      $scope.$apply();
+    };
+    this.changeValue = this.changeValue.bind(this);
   },
   bindings: {
 
   },
-  // template: `
-  //   <div id="appbody">
-  //     <inputline value="value" change-value="$ctrl.changeValue"> </inputline>
-
-  //     <results values="values"> </results>
-
-  //   </div>
-  // `
   template: `
     <div id="appbody">
       <inputline value="$ctrl.value" change-value="$ctrl.changeValue"> </inputline>
 
-      <results values="$ctrl.values"> </results>
+      <results values="values"> </results>
 
     </div>
   `

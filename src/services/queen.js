@@ -1,6 +1,6 @@
 angular.module('n-queens')
   .service('queen', function() {
-    this.runQueen = function(num) {
+    this.runQueen = function(num, setValues) {
       var values = [];
       var temp = '';
       for (let i = 0; i < num; i++) {
@@ -23,9 +23,10 @@ angular.module('n-queens')
           single.count = e.data;
           count += e.data;
           values.push(single);
+          setValues(values); // This is where setValues is called
         };
         myWorker.postMessage([ld, cols, rd, all]);
       }
-      return values;
+      // return values;
     }
   });
