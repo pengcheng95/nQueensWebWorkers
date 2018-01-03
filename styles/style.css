@@ -7,3 +7,38 @@
 	text-align: center;
 	margin: 60px;
 }
+
+.resultLine {
+	text-align: left;
+}
+
+li {
+	list-style-type: none;
+}
+
+.search-bar {
+	text-align: center;
+	align-content: center;
+}
+
+.form-control {
+	width: 300px;
+	margin-left: 20%;
+	float: left;
+	clear: left;
+}
+
+.form-button {
+	float: left;
+	clear: right;
+	margin-left: 5%;
+}
+
+.search-bar {
+	clear: right;
+}
+
+.resultDiv {
+	clear: left;
+	margin-top: 5%;
+}

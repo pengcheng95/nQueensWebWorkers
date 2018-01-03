@@ -8,13 +8,11 @@ angular.module('n-queens')
     changeValue: "<"
   },
   template: `
-    <div>
-
-      <div class="search-bar form-inline">
+    <span class="search-bar>
+      <div class="form-inline">
         <input class="form-control" type="text" ng-model="$ctrl.value" />
-        <button ng-click="$ctrl.changeValue($ctrl.value)"> Compute </button>
+        <button class="form-button" ng-click="$ctrl.changeValue($ctrl.value)"> Compute </button>
       </div>
-
-    </div>
+    </span>
   `
 });

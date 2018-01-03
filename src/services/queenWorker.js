@@ -14,4 +14,5 @@ self.addEventListener('message', function(e) {
   };
   findSolutions(e.data[0], e.data[1], e.data[2], e.data[3]);
   self.postMessage(count);
+  self.close();
 }, false);

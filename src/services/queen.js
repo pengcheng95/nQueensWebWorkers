@@ -2,13 +2,9 @@ angular.module('n-queens')
   .service('queen', function() {
     this.runQueen = function(num, setValues) {
       var values = [];
-      var temp = '';
-      for (let i = 0; i < num; i++) {
-        temp = temp + '1';
-      }
-
-      var all = parseInt(temp, 2) || 0;
+      var all = (1 << num) - 1;
       let count = 0;
+      var start = new Date();
 
       for (let i = 0; i < num; i++) {
         var cols = 2 ** i;
@@ -18,15 +14,17 @@ angular.module('n-queens')
           rd = 2 ** (i - 1);
         }
         var myWorker = new Worker('/src/services/queenWorker.js');
+        myWorker.postMessage([ld, cols, rd, all]);
         myWorker.onmessage = (e) => {
+          var end = new Date();
           var single = {};
           single.count = e.data;
+          single.time = end - start;
           count += e.data;
           values.push(single);
           setValues(values); // This is where setValues is called
         };
-        myWorker.postMessage([ld, cols, rd, all]);
+        
       }
-      // return values;
     }
   });

@@ -5,17 +5,21 @@ angular.module('n-queens')
 
     },
     bindings: {
-      values: '<'
+      values: '<',
+      total: '<'
     },
     template: `
-    <div>
+    <div class="resultDiv">
       <h1> results </h1>
-      {{ $ctrl.values }}
-      	<ul>
-	      <li ng-repeat="count in $ctrl.values">
-	        {{ count.count }}
-	      </li>
+      <ul>
+	      <li ng-repeat="count in $ctrl.values track by $index" class="resultLine">
+          <p> Worker {{$index + 1}} found {{ count.count }} solutions in {{ count.time }} ms </p>
+        </li>
 	    </ul>
+      {{$ctrl.total}}
     </div>
   `
   });
+
+
+  //<resultLine ng-repeat="count in $ctrl.values" data="count" />
