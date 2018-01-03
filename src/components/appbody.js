@@ -18,17 +18,19 @@ angular.module('n-queens')
     this.value = '';
     $scope.values = [];
     $scope.total = 0;
+    $scope.time = 0;
     this.changeValue = function(val) {
       queen.runQueen.call(this, val, this.setValues);
       this.value = '';
-      console.log(this);
     };
     this.setValues = function(vals) {
       $scope.values = vals;
       $scope.total = _.reduce(vals, function(sum, n) {
-        sum + n.count;
+        return sum += n.count;
       }, 0);
-      console.log(this);
+      $scope.time = _.reduce(vals, function(sum, n) {
+        return sum += n.time;
+      }, 0);
       $scope.$apply();
     };
     this.changeValue = this.changeValue.bind(this);
@@ -40,7 +42,7 @@ angular.module('n-queens')
     <div id="appbody">
       <inputline value="$ctrl.value" change-value="$ctrl.changeValue"> </inputline>
 
-      <results values="values" total="total"> </results>
+      <results values="values" total="total" time="time"> </results>
 
     </div>
   `

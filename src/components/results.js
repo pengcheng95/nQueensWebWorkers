@@ -6,7 +6,8 @@ angular.module('n-queens')
     },
     bindings: {
       values: '<',
-      total: '<'
+      total: '<',
+      time: '<'
     },
     template: `
     <div class="resultDiv">
@@ -17,6 +18,7 @@ angular.module('n-queens')
         </li>
 	    </ul>
       {{$ctrl.total}}
+      {{$ctrl.time}}
     </div>
   `
   });
