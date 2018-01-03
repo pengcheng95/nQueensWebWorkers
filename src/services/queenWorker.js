@@ -1,9 +1,13 @@
 self.addEventListener('message', function(e) {
-  let count = 0;
+  let response = {
+    count: 0,
+    time: 0
+  }
+  let start = new Date();
   var findSolutions = function(ld, cols, rd, all) {
     let poss = ~(ld | cols | rd) & all;
     if (cols === all) {
-      count++;
+      response.count++;
     }
     while (poss) {
       let negPoss = poss * -1;
@@ -13,6 +17,9 @@ self.addEventListener('message', function(e) {
     }
   };
   findSolutions(e.data[0], e.data[1], e.data[2], e.data[3]);
-  self.postMessage(count);
+  let end = new Date();
+  response.time = end - start
+  console.log(start, end)
+  self.postMessage(response);
   self.close();
 }, false);

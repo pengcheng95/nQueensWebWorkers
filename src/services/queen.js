@@ -4,7 +4,6 @@ angular.module('n-queens')
       var values = [];
       var all = (1 << num) - 1;
       let count = 0;
-      var start = new Date();
 
       for (let i = 0; i < num; i++) {
         var cols = 2 ** i;
@@ -16,11 +15,9 @@ angular.module('n-queens')
         var myWorker = new Worker('/src/services/queenWorker.js');
         myWorker.postMessage([ld, cols, rd, all]);
         myWorker.onmessage = (e) => {
-          var end = new Date();
           var single = {};
-          single.count = e.data;
-          single.time = end - start;
-          count += e.data;
+          single.count = e.data.count;
+          single.time = e.data.time;
           values.push(single);
           setValues(values); // This is where setValues is called
         };
